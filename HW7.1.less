@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.headerCall(@headerH, @rem){
+    .header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(236, 240, 240);
+        height: @headerH;
+        
+        & span{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: @rem;
+            margin: 5vw;
+            text-align: center;
+        }
+    }
+}
+
+
+.bordered{
+    box-sizing: border-box;
+    border: 2px solid orange;
+}
+
+
+.containerCall(@contHeight, @lrWidth, ){
+    .container{
+        display: flex;
+        flex-direction: row;
+        // height: 100%; //@contHeight
+        background: rgb(189, 195, 195);
+        justify-content: space-between;
+
+        .left, .right{
+            width: @lrWidth;
+            // .bordered;
+        }
+
+        & .center{
+            display: flex;
+            flex-direction: row;
+            flex-flow: wrap;
+            // justify-content: start;
+            align-content: space-around;
+            width: 100vw - @lrWidth * 2;
+            // .bordered;
+        }    
+    }  
+}
+
+
+.blockCall(@blHeight, @margL, @rem){ 
+    .block{
+        margin-left: @margL;
+        margin-top: 2vh;
+        height: @blHeight;
+        width: @blHeight;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: @rem;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+}
+
+
+@blColor: hsl(0, 0%, 95%);
+@selQ: 9; //кол-во селекторов
+@blName: bl; // Префикс класса блока
+.generateSel(@i: 1) when (@i =< @selQ) {
+    .@{blName}@{i}{
+        background: darken(@blColor, @i * 4%);
+    }
+    .generateSel(@i + 1);
+}
+.generateSel();
+
+
+// .containerCall(75vh, 10vw);
+
+// .container{
+//     @media screen and (min-width: 1000px){
+//         .containerCall(75vh, 10vw);
+//     } 
+// }
+
+
+
+@media screen and (max-width: 500px){
+    .headerCall(25vh, 1.5rem);
+    .containerCall(75vh, 0vw);
+    .blockCall(90vw, 3vw, 9rem);
+}
+
+
+@media screen and (min-width: 501px){
+    .headerCall(25vh, 2.5rem);
+    .containerCall(75vh, 0vw);
+    .blockCall(45vw, 2.2vw, 9rem);
+}
+
+@media screen and (min-width: 751px){
+    .headerCall(25vh, 2.5rem);
+    .containerCall(75vh, 0vw);
+    .blockCall(30vw, 2.2vw, 9rem);
+}
+
+@media screen and (min-width: 1000px){
+    .headerCall(25vh, 2rem);
+    .containerCall(75vh, 10vw);
+    body{
+        background: rgb(189, 195, 195);
+    }
+    .blockCall(14.7vw, 1vw, 7rem);
+}
+
+@media screen and (min-width: 1501px){
+    .headerCall(25vh, 2rem);
+    .containerCall(75vh, 10vw);
+    // .container{
+    //     height: 75vh;
+    // }
+    .blockCall(14.7vw, 1vw, 7rem);
+}
+
+
+
