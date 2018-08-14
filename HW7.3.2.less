@@ -1,0 +1,21 @@
+
+.result(@a, @b, @c){
+    @it1: round(sqrt(@a),2);
+    @it2: round(cos(@b),2);
+    @it3: round(max(@a, @b, @c),2);
+    @it4: round(pow(@c,5),2);
+    @result: (@it1 + @it2 + @it3)/@it4;
+    content: @result;
+    // content: @it1;
+    // content: @it2;
+    // content: @it3;
+    // content: @it4;
+    // content: @result;
+}
+
+.res{
+    // .result();
+    &:before{
+        .result(25, 60, 2);
+    }
+}
